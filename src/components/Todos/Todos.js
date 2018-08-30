@@ -164,8 +164,6 @@ class Todos extends React.Component{
     };
   }
 
-
-
   onTouchMove = (e, id) => {
     if(this.moving){
     const todo = document.getElementById(`todo-${id}`);
@@ -180,16 +178,11 @@ class Todos extends React.Component{
       let check = false;
       let elementToMove = todoElementsArr.filter(t => t.id == `todo-${this.tempTodos[quadrant].id}`)[0];
 
-
       if(quadrant < this.presentQuadrant){
-
-
         this.swapTwoObjectsInTempTodos(quadrant);
         elementToMove.style.top = `calc(70px + ${elementToMove.style.top})`;
       }
-
       else if(quadrant > this.presentQuadrant){
-
         this.swapTwoObjectsInTempTodos(quadrant);
         elementToMove.style.top = `calc(${elementToMove.style.top} - 70px)`;
       }
@@ -216,6 +209,42 @@ class Todos extends React.Component{
     this.moving = false;
   }
 
+  onDragStart = (e) => {
+    this.tempTodos = this.state.todos.map(todo => ({...todo}));
+    this.presentQuadrant = Math.ceil((e.pageY-160)/70)-1;
+    e.target.closest("li[class*=todo]").classList.add('movingTodo');
+  }
+  onDragEnd = (e) => {
+    let newQuadrant = Math.ceil((e.pageY-160)/70)-1;
+
+    if(newQuadrant<this.presentQuadrant){
+      let temp = {...this.tempTodos[this.presentQuadrant]};
+      for(let i=this.presentQuadrant-1;i>=newQuadrant;i--){
+        this.tempTodos[i+1]={
+          ...this.tempTodos[i]
+        };
+      }
+      this.tempTodos[newQuadrant]={...temp};
+      this.sortTodos();
+    }
+    else{
+      let temp = {...this.tempTodos[this.presentQuadrant]};
+      for(let i=this.presentQuadrant+1;i<=newQuadrant;i++){
+        this.tempTodos[i-1]={
+          ...this.tempTodos[i]
+        };
+      }
+      this.tempTodos[newQuadrant]={...temp};
+      this.sortTodos();
+    }
+
+
+    e.target.closest("li[class*=todo]").classList.remove('movingTodo');
+
+
+  }
+
+
   componentDidUpdate(prevProps, prevState){
     if(prevState.todos != this.state.todos){
       localStorage.setItem("todos", JSON.stringify(this.state.todos));
@@ -227,11 +256,9 @@ class Todos extends React.Component{
     if(localTodos!=null){
       this.setState({todos:localTodos});
     }
-    window.oncontextmenu = function(event) {
-         event.preventDefault();
-         event.stopPropagation();
-         return false;
-    };
+
+    document.querySelector("input").blur();
+
   }
 
   render(){
@@ -242,7 +269,7 @@ class Todos extends React.Component{
             ? this.state.todos.map((todo, index) => {
               const top = (index*70) + 170;
               return (
-                <li style={{'top':`${top}px`}} key={todo.id} id={`todo-${todo.id}`} className={todo.completed ? `${classes.todo} completed` : `${classes.todo}`} onTouchCancel={this.onTouchCancel} onTouchStart={(e)=>this.onTouchStart(e, todo.id)} onTouchMove={(e)=>this.onTouchMove(e, todo.id)} onTouchEnd={this.onTouchEnd}>
+                <li draggable="true" style={{'top':`${top}px`}} key={todo.id} id={`todo-${todo.id}`} className={todo.completed ? `${classes.todo} completed` : `${classes.todo}`} onTouchCancel={this.onTouchCancel} onTouchStart={(e)=>this.onTouchStart(e, todo.id)} onTouchMove={(e)=>this.onTouchMove(e, todo.id)} onTouchEnd={this.onTouchEnd} onDragStart={this.onDragStart} onDragEnd={this.onDragEnd}>
                   <div className={classes.todoEditorholder}>
                     <p id={`todoText-${todo.id}`} className={todo.completed?`${classes.todoText} completed`: classes.todoText}>{todo.title}</p>
                   <div id={`editor-${todo.id}`} className={classes.editor}>

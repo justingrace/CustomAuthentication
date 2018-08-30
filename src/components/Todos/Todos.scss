@@ -12,6 +12,7 @@ $widthOfTodoText: 200px;
 
 .todos{
   .todo{
+    cursor: pointer;
     position: absolute;
     display: flex;
     justify-content: space-between;
