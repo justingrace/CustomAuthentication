@@ -6,6 +6,12 @@
     background: url("../../assets/img/bg3.jpg") 50% no-repeat;
     background-size: cover;
     box-sizing: border-box;
+    @media(max-width: 767px){
+        min-height: 100vh;
+        height: initial;
+        padding-bottom: 50px;
+        padding-top: 150px;
+    }
     &:after {
         content: '';
         background: black;

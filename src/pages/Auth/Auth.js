@@ -41,7 +41,7 @@ class Auth extends React.Component {
         if (typeof this.state.fpEmail == 'string' && this.state.fpEmail.trim().length > 0 && emailRegEx.test(String(this.state.fpEmail).toLowerCase())) {
             fpStatus = {
                 success: true,
-                message: 'Received! Check your email for the reset link!'
+                message: 'Received! Check your email for the reset link! You have 10mins!'
             }
 
             this.props.onForgotPasswordInit(this.state.fpEmail);
