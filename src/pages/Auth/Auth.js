@@ -120,12 +120,12 @@ class Auth extends React.Component {
                 <Modal customModal={classes.signUpModal} customModalActive={classes.active} active={this.props.signedUp} >
                     <div>
                         Successfully signed up! Check your email!
-                        <p className={classes.redirectingMessage}>Redirecting to Home page!</p>
+                        <p className={classes.redirectingMessage}>Redirecting to Authenticate page!</p>
                     </div>
 
                     {this.props.signedUp && setTimeout(() => {
                         this.props.onSignUp();
-                        this.props.history.push(`/`);
+                        this.props.history.push(`/authenticate`);
                     }, 3000)}
                 </Modal>
 
