@@ -1,0 +1,25 @@
+.Dashboard{
+    position: relative;
+    top: 0px;
+    padding: 150px 5vw 0;
+    height: 100vh;
+    background: url("../../assets/img/bg2.jpg") 50% no-repeat;
+    background-size: cover;
+    box-sizing: border-box;
+    &:after {
+        content: '';
+        background: black;
+        opacity: 0.3;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .innerContent{
+        color: #fff;
+        position: relative;
+        z-index: 2;
+    }
+}

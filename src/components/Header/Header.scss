@@ -1,28 +1,162 @@
 .Header{
-  height: 120px;
-  font-size: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url(../../assets/img/diamonds.png);
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0px 1px 1px 1px rgba(97, 97, 97, 0.2);
-  width: 95%;
-  margin: 0 auto;
-  margin-top: 10px;
-  color: white;
-  position: relative;
-  background-color: #00bcd4;
-  @media(max-width: 768px){
-    width: 90%;
-  }
-
-  .editName{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 5;
     position: absolute;
-    bottom: 10px;
-    right: 10px;
-    cursor: pointer;
-  }
+    width: 90vw;
+    box-sizing: border-box;
+    background: #171717fa;
+    padding: 20px 50px;
+    height: 70px;
+    border-radius: 8px;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff !important;
+    box-shadow: 0px 2px 3px #171717;
+
+    .leftHeader{
+        .Logo{
+            font-size: 25px;
+            color: #fff;
+        }
+    }
+
+
+    .navigation{
+        display: flex;
+        align-items: center;
+
+        .navigationItems{
+            display: flex;
+            align-items: center;
+        }
+        .AuthSection{
+            margin-left: 50px;
+            position: relative;
+            color: #fff;
+            p{
+                cursor: pointer;
+            }
+            form{
+                position: absolute;
+                right: 0;
+                top: 40px;
+                width: 610px;
+            }
+        }
+    }
+
+    @media(max-width: 767px){
+        padding: 0px;
+        padding-top: 10px;
+        height: 50px;
+        flex-direction: column;
+        align-items: flex-start;
+
+        .leftHeader{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            .Logo{
+                padding-left: 20px;
+            }
+
+            .HamMenu{
+                width: 80px;
+                height: 30px;
+                position: relative;
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                .Ham{
+                    height: 3px;
+                    border-radius: 5px;
+                    width: 30px;
+                    background: #fff;
+                    margin-bottom: 6px;
+                    transition: all 0.2s ease-out;
+                    position: relative;
+                    left: 50%;
+                    transform: translate(-50%) rotate(0);
+                    &:last-child{
+                        margin: 0;
+                    }
+                }
+                &.toggledHam{
+                    .Ham{
+                        &:nth-child(1){
+                            transform: translate(-50%) rotate(45deg);
+                            top: 8px;
+                        }
+                        &:nth-child(2){
+                            transform: translateX(100%) rotate(0);
+                            opacity: 0;
+                        }
+                        &:nth-child(3){
+                            transform: translate(-50%) rotate(-45deg);
+                            top: -10px;
+                        }
+                    }
+
+                }
+            }
+        }
+        .navigation{
+            width: 100%;
+            display: block;
+
+        }
+        .navigationItems{
+            box-shadow: 0px 1px 4px #989898;
+
+            align-items: flex-start !important;
+            flex-direction: column;
+            width: 100%;
+            margin-top: 60px;
+            transition: all 0.3s ease-out;
+            opacity: 0;
+            visibility: hidden;
+            border-radius: 6px;
+            background: #fff;
+
+
+
+
+            div{
+                transition: all 0.3s ease-out;
+                transform: translateY(-100%);
+                margin-left: 0;
+                padding: 20px;
+                box-sizing: border-box;
+                position: relative;
+                z-index: 1;
+                width: 100%;
+            }
+
+            &.activeMenu{
+                opacity: 1;
+                visibility: visible;
+                div{
+                    transform: translateY(0);
+                }
+            }
+
+
+            .AuthSection{
+                margin-left: 0;
+                color: black;
+                width: 100%;
+                position: relative;
+                z-index: 1;
+                p{
+                    margin: 0;
+                }
+            }
+        }
+    }
 
 }

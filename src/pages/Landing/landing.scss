@@ -1,0 +1,25 @@
+.Landing {
+    height: 100vh;
+    background: url("../../assets/img/bg.jpg") no-repeat;
+    background-size: cover;
+    &:after {
+        content: '';
+        background: black;
+        opacity: 0.5;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .innerContent{
+        position: relative;
+        z-index: 2;
+        top: 150px;
+        display: flex;
+        justify-content: flex-start;
+        padding: 0 5vw;
+        color: #fff;
+    }
+}

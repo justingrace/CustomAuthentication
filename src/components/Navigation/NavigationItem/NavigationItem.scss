@@ -1,0 +1,19 @@
+@import "../../../_variables";
+.NavigationItem{
+    a{
+        text-decoration: none;
+        color: $white;
+        &.active{
+            color: $red;
+        }
+    }
+    margin-left: 50px;
+
+    @media(max-width: 767px){
+        a {
+            color: $black;
+
+        }
+    }
+
+}

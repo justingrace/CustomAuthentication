@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const cleanPlugin = require('clean-webpack-plugin');
-const {InjectManifest} = require('workbox-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   entry: './src/index.js',
@@ -19,16 +18,7 @@ module.exports = {
           loader: 'babel-loader'
         }
       },
-      // {
-      //    test: /\.css$/,
-      //    use: [
-      //      'style-loader',
-      //      'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-      //      // 'css-loader'
-      //      "postcss-loader"
-      //    ]
-      //  },
-       {
+      {
          test: /\.(sass|scss)$/,
          use: [
           "style-loader",
@@ -59,10 +49,7 @@ module.exports = {
       inject: true,
       template: './src/index.html'
     }),
-    new InjectManifest({
-      swSrc: './src/src-sw.js',
-      swDest: 'dist-sw.js'
-    }),
+
     new CopyWebpackPlugin([{ from: './public/*', to: './', flatten: true}, {from: './public/images', to: './images', ignore: ['*.sh', '*.svg']}])
   ]
 }
