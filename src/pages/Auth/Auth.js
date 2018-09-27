@@ -83,7 +83,7 @@ class Auth extends React.Component {
                         <input placeholder={"Secretive secret password"} type="password" onChange={(e) => {
                             this.setState({password: e.target.value})
                         }} value={this.state.password}/>
-                        <input type="submit" value={this.state.isSignUp ? 'Sign Up' : 'Sign In'}/>
+                        <input type="submit" className={[this.state.isSignUp ? classes.signUpButton : classes.signInButton].join(' ')} value={this.state.isSignUp ? 'Sign Up' : 'Sign In'}/>
                         <div className={classes.smallText}>
                             <div id={"changeButton"} className={classes.changeSignMethodButton}
                                  onClick={this.changeSignMethod}>Switch

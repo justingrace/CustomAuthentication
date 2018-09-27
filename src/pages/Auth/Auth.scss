@@ -1,17 +1,13 @@
 
 .Auth {
     position: relative;
+    padding-bottom: 50px;
     padding-top: 150px;
-    height: 100vh;
+    min-height: 100vh;
     background: url("../../assets/img/bg3.jpg") 50% no-repeat;
     background-size: cover;
     box-sizing: border-box;
-    @media(max-width: 767px){
-        min-height: 100vh;
-        height: initial;
-        padding-bottom: 50px;
-        padding-top: 150px;
-    }
+
     &:after {
         content: '';
         background: black;
@@ -66,6 +62,20 @@
 
                 &[type="submit"] {
                     cursor: pointer;
+                    box-shadow: 0px 2px 3px #9a9a9a;
+                    padding: 12px;
+
+                    color: #fff;
+                    font-size: 16px;
+
+                    &.signUpButton{
+                        background: #92B6B1;
+                        border-color: #92B6B1;
+                    }
+                    &.signInButton{
+                        background: #8499B1;
+                        border-color: #8499B1;
+                    }
                 }
             }
 
